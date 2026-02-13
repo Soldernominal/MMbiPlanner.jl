@@ -18,7 +18,7 @@ include("InitialSearch_check.jl")      #  Testing the initial mme search! functi
 #include("search_check.jl")      #  Testing the correct mme search! functionality (Doesn't hold rn, needs improvement of mme)
 include("Env1_comparison.jl")   #  blocksworld_axioms
 include("Env2_comparison.jl")   #  blocksworld
-include("Env3_comparison.jl")   #  zeno travel
-include("Env4_comparison.jl")   #  wolf-goat-cabbage (wfc)
+#include("Env3_comparison.jl")   #  zeno travel
+#include("Env4_comparison.jl")   #  wolf-goat-cabbage (wfc)
 
 

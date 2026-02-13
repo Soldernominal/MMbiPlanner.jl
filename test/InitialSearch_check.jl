@@ -1,8 +1,13 @@
 @testset "search! basic functionality" begin
-    domain  = load_domain(:blocksworld)
+    domain = load_domain(:blocksworld)
     problem = load_problem(:blocksworld, "problem-2")
-    spec    = Specification(problem)
-    state   = initstate(domain, problem)
+    spec = Specification(problem)
+    state = initstate(domain, problem)
+
+    @test typeof(problem) == GenericProblem
+    @test typeof(Specification) == DataType
+    @test typeof(spec) == MinStepsGoal
+    @test typeof(state) == GenericState
 
     planner = BidirectionalPlanner()
 

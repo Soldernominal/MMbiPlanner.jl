@@ -15,7 +15,6 @@ UnPack = "3a884ed6-31ef-47d7-9d2a-63182c4928ed"
 [compat]
 BenchmarkTools = "1.6.3"
 PlanningDomains = "0.1.4"
-Revise = "3.13.2"
 UnPack = "1.0.2"
 julia = "1.9"
 

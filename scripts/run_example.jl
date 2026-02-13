@@ -1,6 +1,7 @@
 #=
 cd scripts
 julia --project run_example.jl
+doesn't find package here.
 =#
 
 using MMbiPlanner
@@ -8,14 +9,14 @@ using SymbolicPlanners
 using PDDL
 using BenchmarkTools
 
-# Загрузка домена и проблемы
+# Load the problem env
 domain  = load_domain("blocks-domain.pddl")
 problem = load_problem("blocks-problem.pddl", domain)
-spec    = Specification(problem)
+spec = Specification(problem)
 
-# Создание планнеров
+# Create planners, from SymbolicPlanners and MMbiPlanners(mm-e)
 symb_planner = BidirectionalPlanner()
-mm_planner   = MMBiPlanner()
+mm_planner = MMBiPlanner()
 
 println("=== SymbolicPlanners bidirectional ===")
 @btime SymbolicPlanners.search!($symb_planner, $spec)
@@ -23,7 +24,7 @@ println("=== SymbolicPlanners bidirectional ===")
 println("\n=== MMbiPlanner ===")
 @btime MMbiPlanner.search!($mm_planner, $spec)
 
-# Запуск и вывод решения MMbiPlanner
+# Init and output MMbiPlanners sol
 solution = MMbiPlanner.search!($mm_planner, $spec)
 println("\nMMbiPlanner solution:")
 println("Plan: ", solution.plan)

@@ -45,6 +45,7 @@ end
 using SymbolicPlanners
 using PDDL
 using UnPack
+using SymbolicPlanners: simplified
 
 include("mm_search.jl")     # The copy of search!, but with MM
 

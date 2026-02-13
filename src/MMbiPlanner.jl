@@ -58,7 +58,7 @@ function search!(planner::BidirectionalPlanner, spec::MMbSpec)
     domain  = load_domain(problem.domain)
     state   = initstate(domain, problem)
 
-    f_spec = Specification(problem)
+    f_spec = SymbolicPlanners.Specification(problem)
     b_spec = BackwardSearchGoal(f_spec, state)
 
     f_h = planner.forward.heuristic

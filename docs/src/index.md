@@ -6,15 +6,11 @@
 
 # Installation
 
-Make sure [SumbolicPlanners.jl] (https://github.com/JuliaPlanners/SymbolicPlanners.jl/tree/master) and
-          [PDDL.jl] (https://github.com/JuliaPlanners/PDDL.jl/tree/master) directories are installed and are
-located in the same directory, as the MMbiPlanner.
+Make sure SumbolicPlanners.jl and PDDL.jl directories are installed and are located in the same directory, as the MMbiPlanner.
 
 1) julia --project=MMbiPlanner
     or
     cd to directory and then use julia --project
-                                 or
-                                 julia --project=.
 2) ]instantiate
     this should download all necessary dependencies
 3) using MMbiPlanner
@@ -89,11 +85,11 @@ println("Expanded nodes: ", solution.expanded)
 # Performance Comparison
 
 =================================+========================+========================+
-Feature	                         |   SymbolicPlanners	    |      MMbiPlanner       |
+Feature	                         |   SymbolicPlanners	  |      MMbiPlanner       |
 =================================+========================+========================+
 Immediate frontier stopping	     |         Yes            |          No            |
 ---------------------------------+------------------------+------------------------+
-Multiple meeting updates	       |         No             |          Yes           |
+Multiple meeting updates	     |         No             |          Yes           |
 ---------------------------------+------------------------+------------------------+
 MM optimal termination rule	     |         No             |          Yes           |
 ---------------------------------+------------------------+------------------------+

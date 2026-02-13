@@ -1,9 +1,23 @@
 name = "MMbiPlanner"
 uuid = "c27fa319-155f-4a68-abaa-bed4b4ff497a"
-authors = ["Rufat <rufat.ibrahimov.01@gmail.com> and contributors"]
 version = "1.0.0-DEV"
+authors = ["Rufat <rufat.ibrahimov.01@gmail.com> and contributors"]
+
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+PDDL = "2c8894f9-daa1-498a-9e3a-26edd9623db8"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+PlanningDomains = "34fa33c8-33e3-4e77-bac8-de592315aba2"
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+SymbolicPlanners = "b6fe5377-9711-4fad-95b0-be4eed71ecbb"
+UnPack = "3a884ed6-31ef-47d7-9d2a-63182c4928ed"
 
 [compat]
+BenchmarkTools = "1.6.3"
+Pkg = "1.12.0"
+PlanningDomains = "0.1.4"
+Revise = "3.13.2"
+UnPack = "1.0.2"
 julia = "1.6.7"
 
 [extras]

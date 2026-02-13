@@ -71,9 +71,10 @@ function search!(sol::BiPathSearchSolution, planner::BidirectionalPlanner,
 
             # Added
             # MM meet update from forward side
-            if haskey(b_search_tree, f_node_id)
-                gF = f_search_tree[f_node_id].path_cost
-                gB = b_search_tree[f_node_id].path_cost
+            bnode = get(b_search_tree, f_node_id, nothing)
+            if bnode !== nothing
+                gF = f_node.path_cost
+                gB = bnode.path_cost
                 best_meet = min(best_meet, gF + gB)
             end
 
@@ -119,12 +120,12 @@ function search!(sol::BiPathSearchSolution, planner::BidirectionalPlanner,
 
         # --------------------+ MM termination rule +--------------------
         if !isempty(f_queue) && !isempty(b_queue)
-            f_top = SymbolicPlanners.peek(f_queue)
-            b_top = SymbolicPlanners.peek(b_queue)
+            # Allocation reduced by diminishing flooding memory with peek
+            _, f_key = SymbolicPlanners.peek(f_queue)
+            _, b_key = SymbolicPlanners.peek(b_queue)
 
-            f_priority = first(f_top[2])   # f value
-            b_priority = first(b_top[2])   # b value
-
+            f_priority = f_key[1]
+            b_priority = b_key[1]
             if min(f_priority, b_priority) >= best_meet
                 crossed = true
                 sol.status = :success
@@ -151,13 +152,15 @@ function search!(sol::BiPathSearchSolution, planner::BidirectionalPlanner,
     elseif b_reached
         sol.plan, sol.b_trajectory = SymbolicPlanners.reconstruct(b_node_id, b_search_tree)
         sol.trajectory = SymbolicPlanners.simulate(SymbolicPlanners.StateRecorder(), domain, state, sol.plan)
-    """elseif crossed
+    """
+    elseif crossed
         f_plan, sol.f_trajectory = SymbolicPlanners.reconstruct(f_node_id, f_search_tree)
         b_plan, sol.b_trajectory = SymbolicPlanners.reconstruct(b_node_id, b_search_tree)
         sol.plan = vcat(f_plan, reverse(b_plan))
         sol.trajectory = SymbolicPlanners.simulate(SymbolicPlanners.StateRecorder(), domain, state, sol.plan)
-    end"""
-    # This has a risk of not finding solution, cause it has no midpoint of meeting
+    end
+    """
+    # This has a risk of not finding solution, cause it has no midpoint of meeting (happens for cube world)
     elseif crossed
         sol.status = :failure   # Temporarily turned off incorrect crossing
     end

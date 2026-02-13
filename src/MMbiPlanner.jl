@@ -45,7 +45,6 @@ end
 using SymbolicPlanners
 using PDDL
 using UnPack
-using SymbolicPlanners: simplified
 
 include("mm_search.jl")     # The copy of search!, but with MM
 
@@ -59,7 +58,7 @@ function search!(planner::BidirectionalPlanner, spec::MMbSpec)
     domain  = load_domain(problem.domain)
     state   = initstate(domain, problem)
 
-    f_spec = SymbolicPlanners.simplified(Specification(problem), domain, state)
+    f_spec = Specification(problem)
     b_spec = BackwardSearchGoal(f_spec, state)
 
     f_h = planner.forward.heuristic
